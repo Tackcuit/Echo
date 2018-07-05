@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- 扫描controller包下所有标注@Controller的组件 -->
+    <context:component-scan base-package="com.qf.echo.controller"/>
+    <!--扫描所有的异常类-->
+    <!--<contex:component-scan base-package=/>-->
+
+    <!-- 视图解析器 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+          p:prefix="/WEB-INF/jsp/"
+          p:suffix=".jsp"/>
+
+    <mvc:annotation-driven />
+    <!--放行所有的静态资源-->
+    <mvc:default-servlet-handler/>
+
+
+    <!-- 配置 MultipartResolver  处理文件上传 -->
+    <!--<bean id="multipartResolver"-->
+          <!--class="org.springframework.web.multipart.commons.CommonsMultipartResolver">-->
+        <!--<property name="defaultEncoding" value="UTF-8"/> &lt;!&ndash; 默认编码 (ISO-8859-1) &ndash;&gt;-->
+        <!--<property name="maxInMemorySize" value="10240"/> &lt;!&ndash; 最大内存大小 (10240)&ndash;&gt;-->
+        <!--<property name="uploadTempDir" value="/upload/"/> &lt;!&ndash; 上传后的目录名 &ndash;&gt;-->
+        <!--<property name="maxUploadSize" value="-1"/> &lt;!&ndash; 最大文件大小，单位是字节，-1为无限制 &ndash;&gt;-->
+    <!--</bean>-->
+
+    <!-- 配置注解驱动 -->
+    <!-- 配置自定义类型转换器 -->
+    <!--<bean id="conversionService"-->
+          <!--class="org.springframework.format.support.FormattingConversionServiceFactoryBean">-->
+        <!--<property name="converters">-->
+            <!--<list>-->
+                <!--<bean class="com.qfedu.springmvc.controller.converter.DateConverter"></bean>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+
+
+</beans>

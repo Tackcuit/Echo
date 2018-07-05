@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:contex="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <contex:component-scan base-package="com.qf.echo.dao"/>
+    <!--因为这个是和hibernate紧密相关的，所以说要注意hibernate要配置的东西-->
+    <contex:property-placeholder location="classpath:db.properties"/>
+    <!--最重要的是配置连接池-->
+    <bean class="com.alibaba.druid.pool.DruidDataSource" id="dataSource">
+        <property name="driverClassName" value="${jdbc.driverClass}"/>
+        <property name="url" value="${jdbc.jdbcUrl}"/>
+        <property name="username" value="${jdbc.user}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <!-- 初始化连接大小 -->
+        <property name="initialSize" value="0"/>
+        <!-- 连接池最大使用连接数量 -->
+        <property name="maxActive" value="20"/>
+        <!-- 连接池最小空闲 -->
+        <property name="minIdle" value="0"/>
+        <!-- 获取连接最大等待时间 -->
+        <property name="maxWait" value="60000"/>
+    </bean>
+
+    <!--这个是hibernate的配置-->
+    <util:properties id="hibernateProperties">
+        <prop key="hibernate.dialect">org.hibernate.dialect.MySQL57Dialect</prop>
+        <prop key="hibernate.show_sql">true</prop>
+        <prop key="hibernate.format_sql">true</prop>
+        <prop key="hibernate.hbm2ddl.auto">update</prop>
+        <!--单独使用hibernate时才需要的配置，启动threadlocal-->
+        <!--<prop key="current_session_context_class">thread</prop>-->
+    </util:properties>
+
+    <bean class="org.springframework.orm.hibernate5.LocalSessionFactoryBean" id="factory">
+        <!-- 将连接池注入到sessionFactory -->
+        <property name="dataSource" ref="dataSource"/>
+        <!-- 配置hibernate基本信息 -->
+        <property name="hibernateProperties" ref="hibernateProperties"/>
+        <!-- 扫描实体类的位置 -->
+        <property name="packagesToScan" value="com.qf.echo.pojo"/>
+        <!-- 指定映射文件所在的目录 -->
+        <!-- <property name="mappingDirectoryLocations" value="classpath:name/yaohuan/arrescue/pojo" /> -->
+    </bean>
+
+</beans>
