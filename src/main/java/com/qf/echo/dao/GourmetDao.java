@@ -15,7 +15,7 @@ public interface GourmetDao {
 	//假定前端传过来的数据是数据库中的ID
 	Gourmet selectByRealId(Integer goodId);
 	//根据假数据进行加销售量的操作
-	void addSellingNum0Id(Integer type , Integer id);
+	void addSellingNum0Id(Integer type , Integer id, Integer num);
 	//根据数据库真实的id加销售量的操作
-	void addSellingNum(Integer id);
+	void addSellingNum(Integer id,Integer num);
 }

@@ -98,7 +98,7 @@ public class CartController {
 					//order.setBuyItemList(list);
 					order.getBuyItemList().add(buyItem);/*TODO 测试1*/
 					//进行销售量数据的计算
-					drinkService.addSellingNum0Id(type,id,size);
+					drinkService.addSellingNum0Id(type,id,size,num);
 				}else if(mainCategory == 1){
 					//这个说明是美食，这个的处理方法与另一个几乎一致
 					BuyItem buyItem = new BuyItem();/*TODO 2*/
@@ -118,7 +118,7 @@ public class CartController {
 				//	order.setBuyItemList(list);
 					order.getBuyItemList().add(buyItem);/*TODO 测试1*/
 					//进行销售量的计算，假定是假数据
-					gourmetService.addSellingNum0Id(type,id);
+					gourmetService.addSellingNum0Id(type,id,num);
 				}else if(mainCategory == 2){
 					//这个说明是周边商品，这个的处理方法与另一个几乎一致
 					BuyItem buyItem = new BuyItem();/*TODO 2*/
@@ -139,7 +139,7 @@ public class CartController {
 					order.getBuyItemList().add(buyItem);/*TODO 测试1*/
 					//进行销售量加1的操作
 					//TODO
-					peripheralService.addSellingNum0Id(type,id);
+					peripheralService.addSellingNum0Id(type,id,num);
 				}
 				order.setMoney(money);
 			}
@@ -173,7 +173,7 @@ public class CartController {
 					order.getBuyItemList().add(buyItem);/*TODO 测试1*/
 					//进行销售量数据的计算
 					//TODO 这个地方只进行了加一的操作
-					drinkService.addSellingNum0Id(type,id,size);
+					drinkService.addSellingNum0Id(type,id,size,num);
 				}else if(mainCategory == 1){
 					//这个说明是美食，这个的处理方法与另一个几乎一致
 					BuyItem buyItem = new BuyItem();/*TODO 2*/
@@ -194,7 +194,7 @@ public class CartController {
 					order.getBuyItemList().add(buyItem);/*TODO 测试1*/
 					//进行销售量的计算，假定是假数据
 					//TODO 这个地方只进行了加一的操作
-					gourmetService.addSellingNum0Id(type,id);
+					gourmetService.addSellingNum0Id(type,id,num);
 				}else if(mainCategory == 2){
 					//这个说明是美食，这个的处理方法与另一个几乎一致
 					BuyItem buyItem = new BuyItem();/*TODO 2*/
@@ -215,7 +215,7 @@ public class CartController {
 					order.getBuyItemList().add(buyItem);/*TODO 测试1*/
 					//进行销售量加1的操作
 					//TODO
-					peripheralService.addSellingNum0Id(type,id);
+					peripheralService.addSellingNum0Id(type,id,num);
 				}
 				//order.setBuyItemList(set);
 			}

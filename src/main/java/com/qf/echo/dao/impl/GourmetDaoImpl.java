@@ -69,16 +69,16 @@ public class GourmetDaoImpl implements GourmetDao {
 	}
 
 	@Override
-	public void addSellingNum0Id(Integer type, Integer id) {
+	public void addSellingNum0Id(Integer type, Integer id, Integer num) {
 		Gourmet gourmet = selectById(type, id);
-		gourmet.setSellingNum(gourmet.getSellingNum() + 1);
+		gourmet.setSellingNum(gourmet.getSellingNum() + num);
 		currentSession().update(gourmet);
 	}
 
 	@Override
-	public void addSellingNum(Integer id) {
+	public void addSellingNum(Integer id, Integer num) {
 		Gourmet gourmet = selectByRealId(id);
-		gourmet.setSellingNum(gourmet.getSellingNum() + 1);
+		gourmet.setSellingNum(gourmet.getSellingNum() + num);
 		currentSession().update(gourmet);
 	}
 }

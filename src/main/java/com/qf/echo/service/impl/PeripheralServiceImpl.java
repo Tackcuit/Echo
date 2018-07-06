@@ -40,13 +40,13 @@ public class PeripheralServiceImpl implements PeripheralService {
 	}
 
 	@Override
-	public void addSellingNum0Id(Integer type, Integer id) {
-		peripheralDao.addSellingNum0Id(type,id);
+	public void addSellingNum0Id(Integer type, Integer id, Integer num) {
+		peripheralDao.addSellingNum0Id(type,id,num);
 	}
 
 	@Override
-	public void addSellingNum(Integer id) {
-
+	public void addSellingNum(Integer id, Integer num) {
+		peripheralDao.addSellingNum(id,num);
 	}
 
 	@Override

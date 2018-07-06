@@ -13,9 +13,9 @@ public interface DrinkService {
 	List<Drink> hottest();
 	Drink selectById(Integer type , Integer id,Integer size);
 	//假定前端传输过来的数据是数据库中的ID，进行直接检索
-	void addSellingNum(Integer goodId);
+	void addSellingNum(Integer goodId, Integer num);
 	//根据数据库ID进行检索
 	Drink selectByRealKey(Integer goodId);
 	//假定前端传过来的数据不是数据库中的ID，所以说要进行普通检索
-	void addSellingNum0Id(Integer type , Integer id,Integer size);
+	void addSellingNum0Id(Integer type , Integer id,Integer size, Integer num);
 }

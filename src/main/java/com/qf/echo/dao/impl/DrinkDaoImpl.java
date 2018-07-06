@@ -59,10 +59,10 @@ public class DrinkDaoImpl implements DrinkDao {
 	}
 
 	@Override
-	public void addSellingNum(Integer goodId) {
+	public void addSellingNum(Integer goodId, Integer num) {
 		//假定传过来的ID是数据库中存在的ID
 		Drink drink = selectByRealKey(goodId);
-		drink.setSellingNum(drink.getSellingNum() + 1);
+		drink.setSellingNum(drink.getSellingNum() + num);
 		currentSession().update(drink);
 	}
 
@@ -76,9 +76,9 @@ public class DrinkDaoImpl implements DrinkDao {
 	}
 
 	@Override
-	public void addSellingNum0Id(Integer type, Integer id, Integer size) {
+	public void addSellingNum0Id(Integer type, Integer id, Integer size, Integer num) {
 		Drink drink = selectById(type, id, size);
-		drink.setSellingNum(drink.getSellingNum() + 1);
+		drink.setSellingNum(drink.getSellingNum() + num);
 		currentSession().update(drink);
 	}
 

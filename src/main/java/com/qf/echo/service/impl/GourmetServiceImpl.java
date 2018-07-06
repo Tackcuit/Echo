@@ -46,12 +46,12 @@ public class GourmetServiceImpl implements GourmetService {
 	}
 
 	@Override
-	public void addSellingNum0Id(Integer type, Integer id) {
-		gourmetDao.addSellingNum0Id(type,id);
+	public void addSellingNum0Id(Integer type, Integer id,Integer num) {
+		gourmetDao.addSellingNum0Id(type,id,num);
 	}
 
 	@Override
-	public void addSellingNum(Integer id) {
-		gourmetDao.addSellingNum(id);
+	public void addSellingNum(Integer id, Integer num) {
+		gourmetDao.addSellingNum(id,num);
 	}
 }

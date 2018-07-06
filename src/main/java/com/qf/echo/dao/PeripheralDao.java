@@ -13,9 +13,9 @@ public interface PeripheralDao {
 	List<Peripheral> hottest();
 	Peripheral selectById(Integer type , Integer id);
 	//根据假数据进行加销售量的操作
-	void addSellingNum0Id(Integer type , Integer id);
+	void addSellingNum0Id(Integer type , Integer id, Integer num);
 	//根据数据库真实的id加销售量的操作
-	void addSellingNum(Integer id);
+	void addSellingNum(Integer id, Integer num);
 	//根据真实数据来查数据库
 	Peripheral selectByRealId(Integer id);
 }

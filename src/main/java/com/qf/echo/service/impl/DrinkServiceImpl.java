@@ -40,8 +40,8 @@ public class DrinkServiceImpl implements DrinkService {
 	}
 
 	@Override
-	public void addSellingNum(Integer goodId) {
-		drinkDao.addSellingNum(goodId);
+	public void addSellingNum(Integer goodId,Integer num) {
+		drinkDao.addSellingNum(goodId,num);
 	}
 
 	@Override
@@ -51,7 +51,7 @@ public class DrinkServiceImpl implements DrinkService {
 	}
 
 	@Override
-	public void addSellingNum0Id(Integer type, Integer id, Integer size) {
-		drinkDao.addSellingNum0Id(type,id,size);
+	public void addSellingNum0Id(Integer type, Integer id, Integer size, Integer num) {
+		drinkDao.addSellingNum0Id(type,id,size, num);
 	}
 }

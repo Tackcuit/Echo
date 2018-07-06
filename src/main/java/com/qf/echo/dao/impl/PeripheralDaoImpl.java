@@ -56,17 +56,17 @@ public class PeripheralDaoImpl implements PeripheralDao {
 	}
 
 	@Override
-	public void addSellingNum0Id(Integer type, Integer id) {
+	public void addSellingNum0Id(Integer type, Integer id,Integer num) {
 		//TODO 再改一下数据过来告诉我加了几个
 		Peripheral peripheral = selectById(type, id);
-		peripheral.setSellingNum(peripheral.getSellingNum() + 1);
+		peripheral.setSellingNum(peripheral.getSellingNum() + num);
 		currentSession().update(peripheral);
 	}
 
 	@Override
-	public void addSellingNum(Integer id) {
+	public void addSellingNum(Integer id, Integer num) {
 		Peripheral peripheral = selectByRealId(id);
-		peripheral.setSellingNum(peripheral.getSellingNum() + 1);
+		peripheral.setSellingNum(peripheral.getSellingNum() + num);
 		currentSession().update(peripheral);
 	}
 
