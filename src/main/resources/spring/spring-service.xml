@@ -29,6 +29,7 @@
             <tx:method name="change*" propagation="REQUIRED"/>
             <!--change是改变的，就像是更新一样-->
             <tx:method name="reset*" propagation="REQUIRED"/>
+
             <!--这个是用来重置状态的，重置桌子或者其他事物的状态-->
             <!-- SUPPORTS：如果有事务，则在事务中执行；如果没有事务，则不会开启事物 -->
             <tx:method name="find*" propagation="SUPPORTS" read-only="true"/>

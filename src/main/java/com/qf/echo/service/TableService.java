@@ -14,4 +14,5 @@ public interface TableService {
 	void changeOrderId(Integer tableId, String orderId);
 	T_table selectTable(Integer tableId);
 	void resetTable(Integer tableId);
+	void updateChangeAll(T_table table);
 }

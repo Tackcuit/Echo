@@ -15,4 +15,5 @@ public interface TableDao {
 	void changeOrderId(T_table table);
 	void resetTable(T_table table);
 	T_table selectTable(Integer tableId);
+	void updateChangeAll(T_table table);
 }

@@ -64,12 +64,17 @@ public class TableServiceImpl implements TableService {
 
 	@Override
 	public void resetTable(Integer tableId) {
-		T_table table = new T_table();
+		T_table table = tableDao.selectTable(tableId);
 		table.setId(tableId);
 		table.setOrderid("");
 		table.setFlag(false);
 		table.setConsumption(0.0);
 		tableDao.resetTable(table);
+	}
+
+	@Override
+	public void updateChangeAll(T_table table) {
+		tableDao.updateChangeAll(table);
 	}
 
 

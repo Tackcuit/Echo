@@ -62,6 +62,11 @@ public class TableDaoImpl implements TableDao {
 	}
 
 	@Override
+	public void updateChangeAll(T_table table) {
+		currentSession().update(table);
+	}
+
+	@Override
 	public void resetTable(T_table table) {
 		currentSession().update(table);
 	}

@@ -4,8 +4,10 @@ import com.qf.echo.dto.R;
 import com.qf.echo.pojo.*;
 import com.qf.echo.service.*;
 import com.qf.echo.utils.OrderIdGenerator;
+import com.sun.jdi.IntegerType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -32,6 +34,7 @@ public class CartController {
 
 	@RequestMapping("/addToCart")
 	@ResponseBody
+	/*处理订单业务*/
 	/*如果接收的数据是json字符串那么就要用RequestBody，如果是get形式传参就用Requestparam，要是路径传参，那么就用PathVirable*/
 	public R addCustom(@RequestBody Map<String,Object> map){
 		//这个地方要get一下session，然后获取登录信息，把消费存到用户表中
@@ -229,10 +232,12 @@ public class CartController {
 
 	@RequestMapping("/falg")
 	@ResponseBody
+	/*测试方法*/
 	public R cah(){
 		tableService.changeFlag(1);
 		return R.ojbk();
 	}
+
 
 	@RequestMapping("/changeTable")
 	@ResponseBody
@@ -247,6 +252,15 @@ public class CartController {
 		table1.setConsumption(table.getConsumption());
 		tableService.resetTable(table.getId());
 		/*需要一个总体更新的功能*/
+		//TODO 后续还需要判断能不能换成功
+		tableService.updateChangeAll(table1);
 		return R.ojbk();
+	}
+
+	@RequestMapping("/reset/{id}")
+	@ResponseBody
+	public R reset(@PathVariable Integer id){
+		tableService.resetTable(id);
+		return R.ojbk("桌子状态重置成功");
 	}
 }
