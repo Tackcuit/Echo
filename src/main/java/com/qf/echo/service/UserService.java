@@ -13,4 +13,8 @@ public interface UserService {
 	List<User> findall();
 	Boolean login(User user);
 	Boolean login(String email,String password);
+
+	Boolean checkEmail(String email);
+	Boolean checkUserName(String username);
+	Boolean checkPhone(String phone);
 }

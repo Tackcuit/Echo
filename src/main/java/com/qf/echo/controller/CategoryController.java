@@ -32,7 +32,7 @@ public class CategoryController {
 		System.out.println(entry);
 		if(entry != null){
 			Integer i = entry.getValue();
-			List<Object> secondMenu = menuService.secondMenu(i);
+			List<Object> secondMenu = menuService.secondMenu(i + 1);//TODO
 			return R.ojbk().put("res",secondMenu);
 		}
 //		if(type != null){

@@ -1,6 +1,7 @@
 package com.qf.echo.service;
 
 import com.qf.echo.pojo.Drink;
+import com.qf.echo.pojo.GoodDetail;
 
 import java.util.List;
 
@@ -18,4 +19,9 @@ public interface DrinkService {
 	Drink selectByRealKey(Integer goodId);
 	//假定前端传过来的数据不是数据库中的ID，所以说要进行普通检索
 	void addSellingNum0Id(Integer type , Integer id,Integer size, Integer num);
+
+	List<GoodDetail> details(Integer goodid);
+
+	//分辨是属于什么的
+	Integer findPidByGoodid(Integer id);
 }

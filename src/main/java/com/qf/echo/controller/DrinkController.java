@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by Administrator on 2018/6/19.
@@ -33,11 +34,11 @@ public class DrinkController {
 	public R drinks(@RequestBody Map<String,Integer> map){
 		System.out.println(map);
 		Integer type = map.get("type");
-		Integer page = map.get("page");
+//		Integer page = map.get("page");
 //		System.out.println(entry);
 //		System.out.println(type);
 //		System.out.println(page);
-		List<Drink> drinklist = drinkService.drinklist(type, page);
+		List<Drink> drinklist = drinkService.drinklist(type, 1);
 		return R.ojbk().put("data",drinklist);
 	}
 
@@ -49,11 +50,11 @@ public class DrinkController {
 	public R gourmets(@RequestBody Map<String,Integer> map){
 		System.out.println(map);
 		Integer type = map.get("type");
-		Integer page = map.get("page");
+//		Integer page = map.get("page");
 //		System.out.println(entry);
 //		System.out.println(type);
 //		System.out.println(page);
-		List<Gourmet> gourmets = gourmetService.gourmetList(type, page);
+		List<Gourmet> gourmets = gourmetService.gourmetList(type, 1);
 		return R.ojbk().put("data",gourmets);
 	}
 	@Autowired
@@ -68,6 +69,17 @@ public class DrinkController {
 		map.put("drinks",drinks);
 		map.put("gourmet",gourmets);
 		map.put("peripheral",peripherals);
+		Map<String,Object> objectMap = new HashMap<String, Object>();
+		//TODO，怎么控制每个是四个
+		int i = 0;
+		Set<Map.Entry<String, Object>> entries = map.entrySet();
+		for (Map.Entry<String, Object> entry : entries) {
+			objectMap.put(entry.getKey(),entry.getValue());
+			i++;
+			if (i > 3){
+				break;
+			}
+		}
 		return R.ojbk().put("data",map);
 
 	}

@@ -25,9 +25,9 @@ public class PeripheralController {
 	@ResponseBody
 	public R peripheralList(@RequestBody Map<String,Integer> map){
 		Integer type = map.get("type");
-		Integer page = map.get("page");
-		List<Peripheral> list = peripheralService.peripheralList(type, page);
-		return R.ojbk().put("date",list);
+//		Integer page = map.get("page");
+		List<Peripheral> list = peripheralService.peripheralList(type, 1);
+		return R.ojbk().put("data",list);
 	}
 
 

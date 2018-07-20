@@ -27,7 +27,7 @@ public class Order implements Serializable {
 	private Date time;
 
 	//最最重要的，订单里一定要有购物项！
-	@OneToMany(mappedBy = "order",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "order",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	private Set<BuyItem> buyItemList = new HashSet<BuyItem>();
 
 	public Order() {
@@ -98,7 +98,7 @@ public class Order implements Serializable {
 				", money=" + money +
 				", status=" + status +
 				", time=" + time +
-//				", buyItemList=" + buyItemList +
+				", buyItemList=" + buyItemList +
 				'}';
 	}
 }

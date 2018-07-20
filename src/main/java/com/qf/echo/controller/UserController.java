@@ -37,9 +37,39 @@ public class UserController {
 	@ResponseBody
 	@RequestMapping("/register")
 	public R register(@RequestBody User user){
-		//这个时候接收到json数据然后转换成user对象，只需要把缺少的几项补充完整就能正常的运作了
+		//TODO 这个时候接收到json数据然后转换成user对象，只需要把缺少的几项补充完整就能正常的运作了
 		//有问题。这个时候为什么电话号码设置不上？
 		//密码最好要在数据库中加密
+		String username = user.getUsername();
+		String password = user.getPassword();
+		user.setPhone(user.getUsername());
+		String email = user.getEmail();
+		String phone = user.getPhone();
+		if (username == null){
+			return R.error("用户名不能为空");
+		}
+		if (password == null){
+			return R.error("请输入密码");
+		}
+		if (email == null){
+			return R.error("邮箱不能为空");
+			//TODO 有空做个邮箱验证
+		}
+		if (phone == null){
+			return R.error("手机号不能为空");
+		}
+		if(userService.checkEmail(user.getEmail())){
+			return R.error("邮箱已经被注册");
+		}
+		if(userService.checkPhone(user.getPhone())){
+			return R.error("手机号已经被注册");
+		}
+		if(userService.checkUserName(user.getUsername())){
+			return R.error("用户名已存在");
+		}
+
+
+
 		user.setSumConsumption(0.0);
 		user.setCurrentConsumption(0.0);
 		user.setGender("男");
@@ -66,19 +96,27 @@ public class UserController {
 				}
 			}
 		}
-
+		//有数据传输错误，email被填到username中去了，所以手动更改email的值
+		user.setEmail(user.getUsername());
+		if (user.getUsername() == null){
+			return R.error("请填写用户名");
+		}
+		if (user.getPassword() == null){
+			return R.error("请填写密码");
+		}
 		boolean login = userService.login(user);
+		System.out.println(login);
 		if(login){
 			String userinfo = user.getEmail()+"#"+user.getPassword();
-			Cookie cookie = new Cookie("userinfo",userinfo);
-			cookie.setMaxAge(60*60*2);
+			Cookie cookie = null;
+			//cookie.setMaxAge(60*60*2);
 			//设置cookie两个小时失效
 			cookie = new Cookie("userinfo",userinfo);
 			response.addCookie(cookie);
 			return R.ojbk("登录成功");
 		}
 		else{
-			return R.error("用户不存在");
+			return R.error("用户或密码有误");
 		}
 	}
 }

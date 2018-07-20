@@ -38,7 +38,7 @@ public class PeripheralDaoImpl implements PeripheralDao {
 
 	@Override
 	public List<Peripheral> hottest() {
-		NativeQuery sqlQuery = currentSession().createSQLQuery("SELECT * FROM t_product WHERE c_id IN (SELECT c_id FROM t_category WHERE c_parent_id = 3) ORDER BY p_salenum DESC LIMIT 0,3");
+		NativeQuery sqlQuery = currentSession().createSQLQuery("SELECT * FROM t_product WHERE c_id IN (SELECT c_id FROM t_category WHERE c_parent_id = 3) ORDER BY p_salenum DESC LIMIT 0,4");
 		NativeQuery nativeQuery = sqlQuery.addEntity(Peripheral.class);
 		List<Peripheral> list = nativeQuery.list();
 		return null;

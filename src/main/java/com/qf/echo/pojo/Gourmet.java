@@ -17,7 +17,7 @@ public class Gourmet {
 	@Column(name = "p_price")
 	private Double price;
 	@Column(name = "p_membershipprice")
-	private Double membershipprice;
+	private Double membershipPrice;
 	@Column(name = "p_salenum")
 	private Integer sellingNum;
 	@Column(name = "p_intro")
@@ -54,12 +54,12 @@ public class Gourmet {
 		this.price = price;
 	}
 
-	public Double getMembershipprice() {
-		return membershipprice;
+	public Double getMembershipPrice() {
+		return membershipPrice;
 	}
 
-	public void setMembershipprice(Double membershipprice) {
-		this.membershipprice = membershipprice;
+	public void setMembershipPrice(Double membershipPrice) {
+		this.membershipPrice = membershipPrice;
 	}
 
 	public Integer getSellingNum() {
@@ -92,19 +92,5 @@ public class Gourmet {
 
 	public void setIsNew(String isNew) {
 		this.isNew = isNew;
-	}
-
-	@Override
-	public String toString() {
-		return "Gourmet{" +
-				"id=" + id +
-				", name='" + name + '\'' +
-				", price=" + price +
-				", membershipprice=" + membershipprice +
-				", sellingNum=" + sellingNum +
-				", intro='" + intro + '\'' +
-				", goodImg='" + goodImg + '\'' +
-				", isNew='" + isNew + '\'' +
-				'}';
 	}
 }

@@ -1,11 +1,14 @@
 package com.qf.echo.dao.impl;
 
 import com.qf.echo.dao.DrinkDao;
+import com.qf.echo.pojo.BuyItem;
 import com.qf.echo.pojo.Drink;
+import com.qf.echo.pojo.GoodDetail;
 import com.qf.echo.pojo.Gourmet;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.NativeQuery;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -40,7 +43,7 @@ public class DrinkDaoImpl implements DrinkDao {
 
 	@Override
 	public List<Drink> hottest() {
-		NativeQuery sqlQuery = currentSession().createSQLQuery("SELECT * FROM t_product WHERE c_id IN (SELECT c_id FROM t_category WHERE c_parent_id = 1) ORDER BY p_salenum DESC LIMIT 0 , 3");
+		NativeQuery sqlQuery = currentSession().createSQLQuery("SELECT * FROM t_product WHERE c_id IN (SELECT c_id FROM t_category WHERE c_parent_id = 1) ORDER BY p_salenum DESC LIMIT 0 , 4");
 		NativeQuery nativeQuery = sqlQuery.addEntity(Drink.class);
 		List<Drink> list = nativeQuery.list();
 		return list;
@@ -80,6 +83,48 @@ public class DrinkDaoImpl implements DrinkDao {
 		Drink drink = selectById(type, id, size);
 		drink.setSellingNum(drink.getSellingNum() + num);
 		currentSession().update(drink);
+	}
+
+	@Override
+	public List<GoodDetail> details(Integer goodid) {
+//		NativeQuery sqlQuery = currentSession().createSQLQuery("SELECT p_img,p_name,p_price,p_membershipprice FROM t_product WHERE p_id = ?");
+//		sqlQuery.setParameter(0,goodid);
+//		NativeQuery nativeQuery = sqlQuery.addEntity(GoodDetail.class);
+//		List<GoodDetail> list = nativeQuery.list();
+		Query<GoodDetail> query = currentSession().createQuery("from GoodDetail where id = ?", GoodDetail.class);
+		query.setParameter(0, goodid);
+		List<GoodDetail> list = query.list();
+		return list;
+	}
+
+//	@Override
+//	public Integer selectMainC(Integer goodid) {
+//		currentSession().createSQLQuery("")
+//		return null;
+//	}
+
+//	@Override
+//	public List<BuyItem> listBuyItems(Integer tid) {
+//		NativeQuery sqlQuery = currentSession().createSQLQuery("SELECT * FROM t_odetail WHERE oid = (SELECT oid FROM t_order WHERE tid = ? AND status = 0)");
+//		sqlQuery.setParameter(0, tid);
+//		NativeQuery nativeQuery = sqlQuery.addEntity(BuyItem.class);
+//		List<BuyItem> list = nativeQuery.list();
+//		return list;
+//	}
+
+//	@Override
+//	public List<Drink> selectById(Integer goodid) {
+//
+//		return null;
+//	}
+
+	@Override
+	public Integer findPidByGoodid(Integer id) {
+		NativeQuery sqlQuery = currentSession().createSQLQuery("SELECT c_parent_id FROM t_category WHERE c_id = (SELECT c_id FROM t_product WHERE p_id = ?)");
+		NativeQuery nativeQuery = sqlQuery.setParameter(0, id);
+		List list = nativeQuery.list();
+		Integer o = (Integer)list.get(0);
+		return o;
 	}
 
 

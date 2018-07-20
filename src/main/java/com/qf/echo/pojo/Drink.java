@@ -1,14 +1,19 @@
 package com.qf.echo.pojo;
 
+import org.hibernate.annotations.*;
 import org.springframework.beans.factory.annotation.Required;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  * Created by Administrator on 2018/6/19.
  */
 @Entity
 @Table(name = "t_product")
+//@Cacheable
+//@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Drink {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +32,7 @@ public class Drink {
 	@Column(name = "p_isnew")
 	private String isNew;
 	@Column(name = "p_img")
-	private String imgPath;
+	private String goodImg;
 	@Column(name = "p_intro")
 	private String intro;
 	@Column(name = "c_id")
@@ -92,12 +97,12 @@ public class Drink {
 		this.isNew = isNew;
 	}
 
-	public String getImgPath() {
-		return imgPath;
+	public String getGoodImg() {
+		return goodImg;
 	}
 
-	public void setImgPath(String imgPath) {
-		this.imgPath = imgPath;
+	public void setGoodImg(String goodImg) {
+		this.goodImg = goodImg;
 	}
 
 	public String getIntro() {
@@ -126,7 +131,7 @@ public class Drink {
 				", size=" + size +
 				", sellingNum=" + sellingNum +
 				", isNew='" + isNew + '\'' +
-				", imgPath='" + imgPath + '\'' +
+				", goodImg='" + goodImg + '\'' +
 				", intro='" + intro + '\'' +
 				", cid=" + cid +
 				'}';

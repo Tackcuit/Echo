@@ -39,4 +39,22 @@ public class UserServiceImpl implements UserService {
 		Boolean res = userDao.login(email, password);
 		return res;
 	}
+
+	@Override
+	public Boolean checkEmail(String email) {
+		Boolean aBoolean = userDao.checkEmail(email);
+		return aBoolean;
+	}
+
+	@Override
+	public Boolean checkUserName(String username) {
+		Boolean aBoolean = userDao.checkUserName(username);
+		return aBoolean;
+	}
+
+	@Override
+	public Boolean checkPhone(String phone) {
+		Boolean aBoolean = userDao.checkPhone(phone);
+		return aBoolean;
+	}
 }

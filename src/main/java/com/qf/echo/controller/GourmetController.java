@@ -25,8 +25,8 @@ public class GourmetController {
 	@ResponseBody
 	public R gourmetlist(@RequestBody Map<String,Integer> map){
 		Integer type = map.get("type");
-		Integer page = map.get("page");
-		List<Gourmet> gourmets = gourmetService.gourmetList(type, page);
+//		Integer page = map.get("page");
+		List<Gourmet> gourmets = gourmetService.gourmetList(type, 1);
 		return R.ojbk().put("data",gourmets);
 	}
 }

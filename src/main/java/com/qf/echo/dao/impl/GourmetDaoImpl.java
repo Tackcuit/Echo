@@ -43,7 +43,7 @@ public class GourmetDaoImpl implements GourmetDao {
 
 	@Override
 	public List<Gourmet> hottest() {
-		NativeQuery sqlQuery = currentSession().createSQLQuery("SELECT * FROM t_product WHERE c_id IN (SELECT c_id FROM t_category WHERE c_parent_id = 2) ORDER BY p_salenum DESC LIMIT 0,3");
+		NativeQuery sqlQuery = currentSession().createSQLQuery("SELECT * FROM t_product WHERE c_id IN (SELECT c_id FROM t_category WHERE c_parent_id = 2) ORDER BY p_salenum DESC LIMIT 0,4");
 		NativeQuery nativeQuery = sqlQuery.addEntity(Gourmet.class);
 		List<Gourmet> list = nativeQuery.list();
 		return list;

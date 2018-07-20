@@ -2,6 +2,7 @@ package com.qf.echo.service.impl;
 
 import com.qf.echo.dao.DrinkDao;
 import com.qf.echo.pojo.Drink;
+import com.qf.echo.pojo.GoodDetail;
 import com.qf.echo.service.DrinkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,5 +54,17 @@ public class DrinkServiceImpl implements DrinkService {
 	@Override
 	public void addSellingNum0Id(Integer type, Integer id, Integer size, Integer num) {
 		drinkDao.addSellingNum0Id(type,id,size, num);
+	}
+
+	@Override
+	public List<GoodDetail> details(Integer goodid) {
+		List<GoodDetail> details = drinkDao.details(goodid);
+		return details;
+	}
+
+	@Override
+	public Integer findPidByGoodid(Integer id) {
+		Integer pid = drinkDao.findPidByGoodid(id);
+		return pid;
 	}
 }
